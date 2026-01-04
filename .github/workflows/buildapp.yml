@@ -17,7 +17,7 @@ on:
         required: true
         type: string
       decrypted_youtube_url:
-        description: "Direct URL of the decrypted YouTube IPA"
+        description: "Direct download URL of the decrypted YouTube IPA (must be a direct link that starts download immediately, not a share page). Upload your IPA to a service like Litterbox (https://litterbox.catbox.moe) to get a direct download link."
         default: ""
         required: true
         type: string
@@ -54,7 +54,7 @@ concurrency:
 jobs:
   build:
     name: Build uYouEnhanced
-    runs-on: macos-13
+    runs-on: macos-14
     permissions:
       contents: write
 

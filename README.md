@@ -360,8 +360,11 @@ And thanks to the developers qnblackcat, PoomSmart & other  allowing me to expan
 
 # Building
 
-See [arichornlover/Building - Wiki](https://github.com/arichornlover/uYouEnhanced/wiki/Building)
-or [qnblackcat/Building - Wiki](https://github.com/qnblackcat/uYouPlus/wiki/Building).
+**Quick Start (GitHub Actions):** See [BUILDING.md](BUILDING.md) for detailed step-by-step instructions on building with GitHub Actions, including how to get the YouTube IPA URL.
+
+**Additional Resources:**
+- [arichornlover/Building - Wiki](https://github.com/arichornlover/uYouEnhanced/wiki/Building)
+- [qnblackcat/Building - Wiki](https://github.com/qnblackcat/uYouPlus/wiki/Building)
 
 # Installation
 
