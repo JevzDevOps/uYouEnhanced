@@ -350,11 +350,17 @@ YTMainAppControlsOverlayView *controlsOverlayView;
 %end
 
 %hook YTAdsInnerTubeContextDecorator
-- (void)decorateContext:(id)context { %orig(nil); }
+- (void)decorateContext:(id)context { 
+    // Don't call original with nil - just return to prevent breaking player response
+    return;
+}
 %end
 
 %hook YTAccountScopedAdsInnerTubeContextDecorator
-- (void)decorateContext:(id)context { %orig(nil); }
+- (void)decorateContext:(id)context { 
+    // Don't call original with nil - just return to prevent breaking player response
+    return;
+}
 %end
 
 %hook YTLocalPlaybackController
@@ -408,10 +414,16 @@ YTMainAppControlsOverlayView *controlsOverlayView;
 + (id)spamSignalsDictionaryWithoutIDFA { return @{}; }
 %end
 %hook YTAdsInnerTubeContextDecorator
-- (void)decorateContext:(id)context { %orig(nil); }
+- (void)decorateContext:(id)context { 
+    // Don't call original with nil - just return to prevent breaking player response
+    return;
+}
 %end
 %hook YTAccountScopedAdsInnerTubeContextDecorator
-- (void)decorateContext:(id)context { %orig(nil); }
+- (void)decorateContext:(id)context { 
+    // Don't call original with nil - just return to prevent breaking player response
+    return;
+}
 %end
 %hook YTLocalPlaybackController
 - (id)createAdsPlaybackCoordinator { return nil; }
