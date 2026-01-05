@@ -351,15 +351,21 @@ YTMainAppControlsOverlayView *controlsOverlayView;
 
 %hook YTAdsInnerTubeContextDecorator
 - (void)decorateContext:(id)context { 
-    // Don't call original with nil - just return to prevent breaking player response
-    return;
+    // Call original with actual context to prevent breaking player response
+    // The original method needs to process the context properly
+    if (context) {
+        %orig(context);
+    }
 }
 %end
 
 %hook YTAccountScopedAdsInnerTubeContextDecorator
 - (void)decorateContext:(id)context { 
-    // Don't call original with nil - just return to prevent breaking player response
-    return;
+    // Call original with actual context to prevent breaking player response
+    // The original method needs to process the context properly
+    if (context) {
+        %orig(context);
+    }
 }
 %end
 
@@ -415,14 +421,20 @@ YTMainAppControlsOverlayView *controlsOverlayView;
 %end
 %hook YTAdsInnerTubeContextDecorator
 - (void)decorateContext:(id)context { 
-    // Don't call original with nil - just return to prevent breaking player response
-    return;
+    // Call original with actual context to prevent breaking player response
+    // The original method needs to process the context properly
+    if (context) {
+        %orig(context);
+    }
 }
 %end
 %hook YTAccountScopedAdsInnerTubeContextDecorator
 - (void)decorateContext:(id)context { 
-    // Don't call original with nil - just return to prevent breaking player response
-    return;
+    // Call original with actual context to prevent breaking player response
+    // The original method needs to process the context properly
+    if (context) {
+        %orig(context);
+    }
 }
 %end
 %hook YTLocalPlaybackController
@@ -2067,13 +2079,16 @@ static NSMutableArray <YTIItemSectionRenderer *> *filteredArray(NSArray <YTIItem
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kReplaceYTDownloadWithuYou];
     }
     if (![allKeys containsObject:kAdBlockWorkaroundLite]) { 
+        // Enable Lite version by default (less aggressive, better compatibility)
+        // Fixed context decorator issue should prevent playback problems
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAdBlockWorkaroundLite];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kAdBlockWorkaround];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"removeYouTubeAds"];
     }
     if (![allKeys containsObject:kAdBlockWorkaround]) { 
+        // Full ad-blocking disabled by default (more aggressive, may cause issues)
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kAdBlockWorkaroundLite];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAdBlockWorkaround];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kAdBlockWorkaround];
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"removeYouTubeAds"];
     }
     // Broken uYou 3.0.3 setting: No Suggested Videos at The Video End
